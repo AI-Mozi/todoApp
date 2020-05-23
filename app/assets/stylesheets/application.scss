@@ -13,7 +13,7 @@
  *= require_tree .
  *= require_self
  */
-
+ @import "font-awesome";
  @import "bulma";
  
  .navbar-brand .title {
@@ -35,6 +35,6 @@
     margin-top: 100px;
     font-size: 50px;
 }
- .column {
-   padding-left: 20%;
+ .table {
+   width: 912px;
  }
