@@ -1,22 +1,40 @@
-<%= form_with(model: post, local: true) do |form| %>
-  <% if post.errors.any? %>
-    <div id="error_explanation">
-      <h2><%= pluralize(post.errors.count, "error") %> prohibited this post from being saved:</h2>
+<div class="section">
+  <div class="container">
+    <div class="columns is-centered">
+      <div class="column is-6">
 
-      <ul>
-        <% post.errors.full_messages.each do |message| %>
-          <li><%= message %></li>
-        <% end %>
-      </ul>
+          <%= form_with(model: post, local: true) do |form| %>
+            <% if post.errors.any? %>
+              <div id="error_explanation">
+                <h2><%= pluralize(post.errors.count, "error") %> prohibited this post from being saved:</h2>
+
+                <ul>
+                  <% post.errors.full_messages.each do |message| %>
+                    <li><%= message %></li>
+                  <% end %>
+                </ul>
+              </div>
+            <% end %>
+
+            <div class="field">
+              <div class="control">
+              <%= form.text_area :content,  required: true, autofocus: true, input_html: { class:"input" }, wrapper: false, label_html: { class:"label" }  %>
+            </div>
+
+            <div class="field">
+              <div class="control">
+              <%= form.submit %>
+              </div>
+            </div>
+          <% end %>
+          <%= link_to 'Back', root_path%>
+      </div>
     </div>
-  <% end %>
-
-  <div class="field">
-    <%= form.label :content %>
-    <%= form.text_area :content %>
   </div>
+</div>
 
-  <div class="actions">
-    <%= form.submit %>
-  </div>
-<% end %>
+
+
+    
+
+        
