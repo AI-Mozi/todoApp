@@ -1,5 +1,5 @@
 class PostsController < ApplicationController
-  before_action :set_post, only: [:show, :edit, :update, :destroy]
+  before_action :set_post, only: [:show, :edit, :update, :destroy, :complete]
   before_action :authenticate_user!
   # GET /posts
   # GET /posts.json
@@ -60,6 +60,11 @@ class PostsController < ApplicationController
       format.html { redirect_to posts_url, notice: 'Post was successfully destroyed.' }
       format.json { head :no_content }
     end
+  end
+
+  def complete
+    @post.update_attribute(:completed_at, Time.now)
+    redirect_to root_path, notice: "Todo item completed"
   end
 
   private
