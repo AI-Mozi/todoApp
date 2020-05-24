@@ -10,7 +10,10 @@
         <div class="todo-lcontent">
 
           <div class="todo-left">
-              <%= link_to 'Mark as complete' , complete_post_path(post), method: :patch%>
+              <%= link_to complete_post_path(post), method: :patch do%>
+                <span class="icon"><i class="fa fa-check" aria-hidden="true"></i></span>
+              <% end %>
+              <%= post.date.to_formatted_s(:long)%>
           </div>
 
           <div class='todo-done'>
@@ -23,7 +26,7 @@
              <%= link_to edit_post_path(post), class: "level-item" do %>
                 <span class="icon"><i class="fa fa-pencil" aria-hidden="true"></i></span>
               <% end %>
-            <%= link_to post, method: :delete , data: {confirm: "Are you sure you want to delete this tweet? "} do%>
+            <%= link_to post, method: :delete , data: {confirm: "Are you sure you want to delete this task? "} do%>
                 <span class="icon"><i class="fa fa-trash-o" aria-hidden="true"></i></span>
             <% end %>
         </div>
@@ -32,7 +35,11 @@
           <div class="todo-lcontent">
 
           <div class="todo-left">
-              <%= link_to 'Mark as complete' , complete_post_path(post), method: :patch%>
+             <%= link_to complete_post_path(post), method: :patch do%>
+                <span class="icon"><i class="fa fa-circle-thin" aria-hidden="true"></i></span>
+              <% end %>       
+             <%= post.date.to_formatted_s(:long)%>
+
           </div>
 
           <div class='todo-content'>
@@ -45,7 +52,7 @@
              <%= link_to edit_post_path(post), class: "level-item" do %>
                 <span class="icon"><i class="fa fa-pencil" aria-hidden="true"></i></span>
               <% end %>
-            <%= link_to post, method: :delete , data: {confirm: "Are you sure you want to delete this tweet? "} do%>
+            <%= link_to post, method: :delete , data: {confirm: "Are you sure you want to delete this task? "} do%>
                 <span class="icon"><i class="fa fa-trash-o" aria-hidden="true"></i></span>
             <% end %>
         </div>
