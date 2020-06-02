@@ -1,29 +1,27 @@
 class PostsController < ApplicationController
-  before_action :set_post, only: [:show, :edit, :update, :destroy, :complete]
-  before_action :authenticate_user!
-  # GET /posts
-  # GET /posts.json
+  before_action :set_post, only: [:show, :edit, :update, :destroy]
+  before_action :authenticate_user!, except: [:index]
+  before_action :require_login
+
   def index
-    @posts = Post.where(user_id: current_user.id).order("created_at DESC")
+    @posts = current_user.posts.order('created_at DESC')
     @post = Post.new
   end
 
-  # GET /posts/1
-  # GET /posts/1.json
+
   def show
   end
 
-  # GET /posts/new
+
   def new
     @post = current_user.posts.build
   end
 
-  # GET /posts/1/edit
+
   def edit
   end
 
-  # POST /posts
-  # POST /posts.json
+
   def create
     @post = current_user.posts.build(post_params)
 
@@ -38,22 +36,17 @@ class PostsController < ApplicationController
     end
   end
 
-  # PATCH/PUT /posts/1
-  # PATCH/PUT /posts/1.json
+
   def update
-    respond_to do |format|
       if @post.update(post_params)
-        format.html { redirect_to root_path, notice: 'Post was successfully updated.' }
-        format.json { render :show, status: :ok, location: @post }
+        redirect_to root_path, notice: 'Post was successfully updated.'
       else
-        format.html { render :edit }
-        format.json { render json: @post.errors, status: :unprocessable_entity }
+        render :edit
       end
-    end
+      
   end
 
-  # DELETE /posts/1
-  # DELETE /posts/1.json
+ 
   def destroy
     @post.destroy
     respond_to do |format|
@@ -62,21 +55,22 @@ class PostsController < ApplicationController
     end
   end
 
-  def complete
-    @post.update_attribute(:completed_at, Time.now)
-    redirect_to root_path, notice: "Todo item completed"
-  end
 
   private
-    # Use callbacks to share common setup or constraints between actions.
+  
     def set_post
-      @post = Post.find(params[:id])
-    end
+        @post = Post.find(params[:id])
+      end
 
-    # Only allow a list of trusted parameters through.
+      
     def post_params
-      params.require(:post).permit(:content, :date)
-    end
+        params.require(:post).permit(:content, :date)
+      end
 
-
+    def require_login
+        unless current_user
+          redirect_to new_user_session_url
+        end
+      end
+  
 end

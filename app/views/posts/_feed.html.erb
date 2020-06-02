@@ -10,7 +10,7 @@
         <div class="todo-lcontent">
 
           <div class="todo-left">
-              <%= link_to complete_post_path(post), method: :patch do%>
+              <%= link_to post_url(post), method: :patch do%>
                 <span class="icon"><i class="fa fa-check" aria-hidden="true"></i></span>
               <% end %>
               <%= post.date.to_formatted_s(:long)%>
@@ -30,12 +30,13 @@
                 <span class="icon"><i class="fa fa-trash-o" aria-hidden="true"></i></span>
             <% end %>
         </div>
+        
         <% else %>
 
           <div class="todo-lcontent">
 
           <div class="todo-left">
-             <%= link_to complete_post_path(post), method: :patch do%>
+             <%= link_to post_url(post), method: :patch do%>
                 <span class="icon"><i class="fa fa-circle-thin" aria-hidden="true"></i></span>
               <% end %>       
              <%= post.date.to_formatted_s(:long)%>

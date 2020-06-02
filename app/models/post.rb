@@ -2,6 +2,6 @@ class Post < ApplicationRecord
     belongs_to :user
 
     def completed?
-        !completed_at.blank?
+        completed_at.present?
      end
 end

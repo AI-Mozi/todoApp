@@ -1,13 +1,2 @@
-
-
-<% if user_signed_in? %>
-    <%= render 'feed' %>
-  <% else %>
-    <div class="media">
-      <div class="media-content">  
-      <%= link_to 'Sign In', new_user_registration_path %>
-      <div>
-    </div>
-<% end %>
-<br>
+<%= render 'feed' %>
 
