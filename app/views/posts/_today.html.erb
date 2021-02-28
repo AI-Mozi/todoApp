@@ -1,0 +1,65 @@
+<h1>TODAY</h1>
+<% if @today_posts.present? %>
+  <% @today_posts.each do |post| %> 
+      <div class="todo-loop">
+      <% if post.completed?%>
+
+        <div class="todo-lcontent">
+
+          <div class="todo-left">
+              <%= link_to post_url(post), method: :patch do%>
+                <span class="icon"><i class="fa fa-check" aria-hidden="true"></i></span>
+              <% end %>
+              <%= post.date.to_formatted_s(:short)%>
+          </div>
+
+          <div class='todo-done'>
+              <%= post.content %>
+          </div>
+
+        </div>
+
+        <div class="todo-right">
+             <%= link_to edit_post_path(post), class: "level-item" do %>
+                <span class="icon"><i class="fa fa-pencil" aria-hidden="true"></i></span>
+              <% end %>
+            <%= link_to post, method: :delete , data: {confirm: "Are you sure you want to delete this task? "} do%>
+                <span class="icon"><i class="fa fa-trash-o" aria-hidden="true"></i></span>
+            <% end %>
+        </div>
+        
+        <% else %>
+
+          <div class="todo-lcontent">
+
+          <div class="todo-left">
+             <%= link_to post_url(post), method: :patch do%>
+                <span class="icon"><i class="fa fa-circle-thin" aria-hidden="true"></i></span>
+              <% end %>       
+             <%= post.date.to_formatted_s(:short)%>
+
+          </div>
+
+          <div class='todo-content'>
+              <%= post.content %>
+          </div>
+
+        </div>
+
+        <div class="todo-right">
+             <%= link_to edit_post_path(post), class: "level-item" do %>
+                <span class="icon"><i class="fa fa-pencil" aria-hidden="true"></i></span>
+              <% end %>
+            <%= link_to post, method: :delete , data: {confirm: "Are you sure you want to delete this task? "} do%>
+                <span class="icon"><i class="fa fa-trash-o" aria-hidden="true"></i></span>
+            <% end %>
+        </div>
+
+        <% end %>
+      </div>
+    <% end %>
+<%else%>
+  <div class="nothing-to-do">
+    <p>NOTHING TO DO TODAY</p>
+  </div>
+<%end%>

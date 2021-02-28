@@ -1,64 +1,34 @@
 <div class="todo">
   <div class="todo-container">
-    <div class="todo-txt">
-      <h2 class="title is-2">DO IT ASAP!</h2>
-    </div>
-    <% @posts.each do |post| %>
-      <div class="todo-loop">
-      <% if post.completed?%>
-
-        <div class="todo-lcontent">
-
-          <div class="todo-left">
-              <%= link_to post_url(post), method: :patch do%>
-                <span class="icon"><i class="fa fa-check" aria-hidden="true"></i></span>
-              <% end %>
-              <%= post.date.to_formatted_s(:long)%>
+    <% if @posts.present? %>
+      <div class="todo-txt">
+        <h2 class="title is-2">DO IT ASAP!</h2>
+      </div>
+      
+        <div class="columns">
+          <div class="column">
+            <%= render "today" %>
           </div>
-
-          <div class='todo-done'>
-              <%= post.content %>
+          <div class="column">
+            <%= render "week" %>
           </div>
-
-        </div>
-
-        <div class="todo-right">
-             <%= link_to edit_post_path(post), class: "level-item" do %>
-                <span class="icon"><i class="fa fa-pencil" aria-hidden="true"></i></span>
-              <% end %>
-            <%= link_to post, method: :delete , data: {confirm: "Are you sure you want to delete this task? "} do%>
-                <span class="icon"><i class="fa fa-trash-o" aria-hidden="true"></i></span>
-            <% end %>
-        </div>
-        
-        <% else %>
-
-          <div class="todo-lcontent">
-
-          <div class="todo-left">
-             <%= link_to post_url(post), method: :patch do%>
-                <span class="icon"><i class="fa fa-circle-thin" aria-hidden="true"></i></span>
-              <% end %>       
-             <%= post.date.to_formatted_s(:long)%>
-
+          <div class="column">
+            <%= render "month" %>
           </div>
-
-          <div class='todo-content'>
-              <%= post.content %>
-          </div>
-
         </div>
-
-        <div class="todo-right">
-             <%= link_to edit_post_path(post), class: "level-item" do %>
-                <span class="icon"><i class="fa fa-pencil" aria-hidden="true"></i></span>
-              <% end %>
-            <%= link_to post, method: :delete , data: {confirm: "Are you sure you want to delete this task? "} do%>
-                <span class="icon"><i class="fa fa-trash-o" aria-hidden="true"></i></span>
-            <% end %>
-        </div>
-
+        <% if @other_posts.present? %>
+          <div class="columns">
+            <div class="column is-full">
+              <%= render "other" %>
+            </div>
+          <div>
         <% end %>
+        
+    <% else %>
+      <div class="todo-nothing">
+        <p class="title is-1">YOU HAVE NOTHING TO DO!</p></br>
+        <progress class="progress is-small is-info" max="100">60%</progress>
+        <p>Create some new tasks!</p></br>
       </div>
     <% end %>
   </div>

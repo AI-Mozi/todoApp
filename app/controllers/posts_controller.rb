@@ -4,7 +4,11 @@ class PostsController < ApplicationController
   before_action :require_login
 
   def index
-    @posts = current_user.posts.order('created_at DESC')
+    @today_posts = current_user.posts.where('date BETWEEN ? AND ?',(Date.today),(Date.today + 1.day ))
+    @week_posts = current_user.posts.where('date BETWEEN ? AND ?',(Date.today + 1.day ),(Date.today + 8.day ))
+    @month_posts = current_user.posts.where('date BETWEEN ? AND ?', (Date.today + 8.days), (Date.today + 1.month + 1.day))
+    @other_posts = current_user.posts.where('date > ?', (Date.today + 1.month + 1.day))
+    @posts = current_user.posts
     @post = Post.new
   end
 
@@ -27,7 +31,7 @@ class PostsController < ApplicationController
 
     respond_to do |format|
       if @post.save
-        format.html { redirect_to root_path, notice: 'Post was successfully created.' }
+        format.html { redirect_to root_path, notice: 'Task was successfully created.' }
         format.json { render :show, status: :created, location: @post }
       else
         format.html { render :new }
@@ -39,7 +43,7 @@ class PostsController < ApplicationController
 
   def update
       if @post.update(post_params)
-        redirect_to root_path, notice: 'Post was successfully updated.'
+        redirect_to root_path, notice: 'Task was successfully updated.'
       else
         render :edit
       end
@@ -50,7 +54,7 @@ class PostsController < ApplicationController
   def destroy
     @post.destroy
     respond_to do |format|
-      format.html { redirect_to posts_url, notice: 'Post was successfully destroyed.' }
+      format.html { redirect_to posts_url, notice: 'Task was successfully destroyed.' }
       format.json { head :no_content }
     end
   end

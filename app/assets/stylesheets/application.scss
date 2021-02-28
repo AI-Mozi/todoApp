@@ -42,10 +42,10 @@
   width:100%
  }
  .todo-container{
-   width: 80%;
-    display: table;
-    margin: 0 auto;
-    text-align: center;
+  width: 80%;
+  display: table;
+  margin: 0 auto;
+  text-align: center;
  }
  .todo-left{
   float: left;
@@ -63,12 +63,13 @@
    margin-bottom: 30px;
  }
  .todo-loop{
+   margin-top: 20px;
    border-bottom: 1px solid black;
-   height: 50px;
+   height: 70px;
    position: relative;
  }
  .todo-lcontent{
-   float: left;
+  float: left;
   height: 50%;
   position: absolute;
   top: 50%;
@@ -81,9 +82,17 @@
  }
  .todo-lcontent-done{
   float: left;
- height: 50%;
- position: absolute;
- top: 50%;
- -ms-transform: translateY(-50%);
- transform: translateY(-50%);
+  height: 50%;
+  position: absolute;
+  top: 50%;
+  -ms-transform: translateY(-50%);
+  transform: translateY(-50%);
+}
+.todo-nothing {
+  text-align: center;
+  margin-top: 200px;
+}
+.nothing-to-do p{
+  margin-top: 30px;
+  border: 1px solid blue;
 }
