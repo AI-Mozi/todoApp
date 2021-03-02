@@ -54,6 +54,7 @@ group :development do
 
   gem 'better_errors', '~> 2.7', '>= 2.7.1'
   gem 'binding_of_caller', '~> 0.8.0'
+  gem 'pry', '~> 0.13.1'
 end
 
 group :test do

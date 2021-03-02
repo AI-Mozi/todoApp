@@ -56,6 +56,7 @@
  }
  .todo-right{
   float: right;
+  margin-top: 15px;
 }
  .todo-txt{
    text-align: center;
@@ -95,4 +96,6 @@
 .nothing-to-do p{
   margin-top: 30px;
   border: 1px solid blue;
+  border-radius: 5px;
+  font-size: 30px;
 }
