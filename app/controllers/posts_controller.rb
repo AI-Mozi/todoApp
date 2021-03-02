@@ -1,4 +1,3 @@
-require 'pry'
 class PostsController < ApplicationController
   before_action :set_post, only: [:show, :edit, :update, :destroy]
   before_action :authenticate_user!, except: [:index]
@@ -44,7 +43,6 @@ class PostsController < ApplicationController
 
   def update
       if @post.update(post_params)
-        binding.pry
         redirect_to root_path, notice: 'Task was successfully updated.'
       else
         render :edit
