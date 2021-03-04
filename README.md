@@ -1,6 +1,6 @@
-# Alert Walutowy
+# Todo Application
 
-A simple todo application. </br>
+A simple todo application for desktop only. </br>
 
 https://radiant-journey-84634.herokuapp.com/
 
