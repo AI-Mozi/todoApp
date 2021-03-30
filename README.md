@@ -2,7 +2,7 @@
 
 A simple todo application for desktop only. </br>
 
-https://radiant-journey-84634.herokuapp.com/
+https://mozi-todo.herokuapp.com/
 
 ### Ruby version
   * 2.7.1
